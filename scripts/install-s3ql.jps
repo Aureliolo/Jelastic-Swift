@@ -1,8 +1,8 @@
 type: update
-name: XXX
-description: XXX
-logo: images/XXX
-baseUrl: https://raw.githubusercontent.com/panslothda/XXX
+name: Installer for s3ql
+description: Installs s3ql as well as pip and yum packages
+logo: images/logo.png
+baseUrl: https://raw.githubusercontent.com/panslothda/Jelastic-Swift/master
 skipNodeEmails: true
 
 globals:
@@ -10,17 +10,9 @@ globals:
   TARGET_NODE_ID: "${settings.targetNodeID}"
 
 onInstall:
-  - XXX
-  - XXX
-
-
-actions:
-  XXX:
-    - log: XXX
-    - cmd[${globals.TARGET_NODE_ID}]: |-
-        XXX
-      user: root
-      sayYes: true
+  - yum
+  - pip
+  - s3ql
 
   yum:
     - log: install yum packages
