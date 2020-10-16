@@ -42,7 +42,10 @@ actions:
     - install: ${baseUrl}/scripts/install-s3ql.jps
       settings:
         node: "${targetNodes.nodeGroup}"
-      skipEmail: true    
+      skipEmail: true
+
+  configure-s3ql:
+    - log: Configuring     
 
   add-to-redeploy:
     - log: Add all necessary files and folder to the redeploy file
