@@ -7,6 +7,9 @@ description: |
   Allows the mounting of a Swift Storage. For example https://www.infomaniak.com/en/swiss-backup
 skipNodeEmails: true
 
+targetNodes:
+  nodeGroup: '*'
+
 settings:
   main:
     fields:
