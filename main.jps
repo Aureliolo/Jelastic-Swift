@@ -11,40 +11,10 @@ settings:
   main:
     fields:
       - type: string
-        name: serverip
-        caption: Zabbix server IP
-        placeholder: 10.0.0.1
+        name: user
+        caption: Username
+        placeholder: xxxxxx
         required: true
-      - type: checkbox
-        name: remotecmd
-        value: false
-        caption: Enable remote commands from Zabbix server
-        showIf:
-          true:
-            type: checkbox
-            name: remotelogging
-            value: true
-            caption: Enable logging of executed shell commands as warnings
-          false:
-            type: compositefield
-            hideLabel: true
-            pack: left
-            name: remotelogging
-            value: false
-            itemCls: deploy-manager-grid
-            cls: x-grid3-row-unselected
-            items: [{
-              type: "displayfield",
-              cls: "x-grid3-row-checker x-item-disabled",
-              margins: "0 0 0 -3",
-              width: 20,
-              height: 20
-            }, {
-              type: "displayfield",
-              cls: "x-item-disabled",
-              value: "Enable logging of executed shell commands as warnings",
-              margins: "0 0 0 10"
-            }]
 
 onInstall:
   - install-s3ql
