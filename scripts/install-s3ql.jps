@@ -5,15 +5,12 @@ logo: images/logo.png
 baseUrl: https://raw.githubusercontent.com/panslothda/Jelastic-Swift/master
 skipNodeEmails: true
 
-globals:
-  XXX: "XXX"
-  TARGET_NODE_ID: "${settings.targetNodeID}"
-
 onInstall:
   - yum
   - pip
   - s3ql
 
+actions:
   yum:
     - log: install yum packages
     - cmd[${settings.node}]: |-
