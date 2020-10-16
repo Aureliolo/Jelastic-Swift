@@ -7,12 +7,48 @@ description: |
   Allows the mounting of a Swift Storage. For example https://www.infomaniak.com/en/swiss-backup
 skipNodeEmails: true
 
-globals:
+settings:
+  main:
+    fields:
+      - type: string
+        name: serverip
+        caption: Zabbix server IP
+        placeholder: 10.0.0.1
+        required: true
+      - type: checkbox
+        name: remotecmd
+        value: false
+        caption: Enable remote commands from Zabbix server
+        showIf:
+          true:
+            type: checkbox
+            name: remotelogging
+            value: true
+            caption: Enable logging of executed shell commands as warnings
+          false:
+            type: compositefield
+            hideLabel: true
+            pack: left
+            name: remotelogging
+            value: false
+            itemCls: deploy-manager-grid
+            cls: x-grid3-row-unselected
+            items: [{
+              type: "displayfield",
+              cls: "x-grid3-row-checker x-item-disabled",
+              margins: "0 0 0 -3",
+              width: 20,
+              height: 20
+            }, {
+              type: "displayfield",
+              cls: "x-item-disabled",
+              value: "Enable logging of executed shell commands as warnings",
+              margins: "0 0 0 10"
+            }]
 
 onInstall:
   - install-s3ql
-  - enable-ssl
-  - XXX
+  - configure-s3ql
   - add-to-redeploy
 
 onAfterRedeployContainer:
@@ -38,19 +74,20 @@ actions:
         node: "${targetNodes.nodeGroup}"
       skipEmail: true    
 
-
   add-to-redeploy:
     - log: Add all necessary files and folder to the redeploy file
     - cmd [cp]: |-
-        echo XXX >> /etc/jelastic/redeploy.conf
-        echo XXX >> /etc/jelastic/redeploy.conf
-        echo XXX >> /etc/jelastic/redeploy.conf
+        echo /opt/s3ql/ >> /etc/jelastic/redeploy.conf
       user: root  
   
   redeploy:
-    - log: re-install XXX
-    - install: ${baseUrl}/scripts/redeploy.jps
-      skipEmail: true
+    - log: re-install s3ql
+    - cmd[${settings.node}]: |-
+        cd /opt/s3ql
+        cd s3ql-3.5.1
+        python3 setup.py install
+      user: root
+      sayYes: true
 
 success:
   email: text/success-email.md
