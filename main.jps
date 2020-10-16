@@ -20,29 +20,22 @@ onInstall:
   - enable-ssl
   - XXX
   - add-to-redeploy
-  - installAddon:
-      id: update-addon
-      nodeGroup: XXX  
 
 onAfterRedeployContainer:
   - redeploy
 
-addons:
-  - id: update-addon
-    name: Update XXX XXX
-    description: XXX
-    buttons:
-      - caption: Update
-        action: update
-        loadingText: Updating...
-        confirmText: Do you want to update XXX?
-        successText: XXX have been successfully updated!
-    actions:
-      update:
-        - log: XXX
-        - install: https://raw.githubusercontent.com/panslothda/XXX/scripts/update-XXX.jps
-          skipEmail: true
-
+buttons:
+  - confirmText: Do you want to update the s3ql binary?
+    loadingText: Updating...
+    action: update
+    caption: Update s3ql
+    successText: s3ql has been upgraded
+  - caption: Configure
+    action: configure
+    settings: main
+    loadingText: Configuring...
+    successText: /text/success.md
+    
 actions:
   XXX:
     api[cp]:
