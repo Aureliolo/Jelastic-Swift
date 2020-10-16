@@ -1,20 +1,13 @@
-type: install / update
+type: update
 version: 0.1
-name: XXX
-baseUrl: https://raw.githubusercontent.com/panslothda/XXX
-logo: images/XXX
-homepage: https://XXX
+name: Swift
+baseUrl: https://raw.githubusercontent.com/panslothda/Jelastic-Swift/master
+logo: images/logo.png
 description: |
-  XXX
-
+  Allows the mounting of a Swift Storage. For example https://www.infomaniak.com/en/swiss-backup
 skipNodeEmails: true
 
-nodes:
-  nodeType: llsmp
-  fixedCloudlets: 4
-  cloudlets: 16
-  nodeGroup: cp
-  skipEmail: true
+
 
 globals:
   DB_USER: jelastic-${fn.random}
