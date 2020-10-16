@@ -23,12 +23,27 @@ actions:
       sayYes: true
 
   yum:
-    - log: XXXX
-    - cmd[cp]]: |-
-        yum -y install psmisc libsqlite3x-devel python3-devel
+    - log: install yum packages
+    - cmd[${settings.node}]: |-
+        yum -y install psmisc libsqlite3x-devel python3-devel fuse3-devel gcc-c++ systemd-devel
       user: root
+    - api[${settings.node}]: jelastic.environment.control.RestartNodes
+
   pip:
     - log: install python dependencies
-    - cmd[cp]]: |-
-        pip3 install setuptools cryptography defusedxml apsw trio pyfuse3
+    - cmd[${settings.node}]: |-
+        pip3 install setuptools cryptography defusedxml apsw trio pyfuse3 dugong async_generator
       user: root
+
+  s3ql:
+    - log: make package and install systemwide
+    - cmd[${settings.node}]: |-
+        mkdir /opt/s3ql
+        cd /opt/s3ql
+        wget https://github.com/s3ql/s3ql/releases/download/release-3.5.1/s3ql-3.5.1.tar.bz2
+        tar -xvf s3ql-3.5.1.tar.bz2
+        cd s3ql-3.5.1
+        python3 setup.py build_ext --inplace
+        python3 setup.py install
+      user: root
+      sayYes: true
