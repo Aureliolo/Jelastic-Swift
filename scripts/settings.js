@@ -35,6 +35,7 @@ return {
 			                    "type": "string",
 			                    "required": true,
 			                    "hidden": true,
+			                    "hideLabel": true,
 			                    "default": "RegionOne"
 			                },
 			                {
@@ -42,6 +43,7 @@ return {
 			                    "type": "string",
 			                    "required": true,
 			                    "hidden": true,
+			                    "hideLabel": true,
 			                    "default": "sb_project_SBI-AA177274"
 			                },
 			                {
@@ -49,6 +51,7 @@ return {
 			                    "type": "string",
 			                    "required": true,
 			                    "hidden": true,
+			                    "hideLabel": true,
 			                    "default": "default"
 			                },
 			                {
@@ -56,6 +59,7 @@ return {
 			                    "type": "string",
 			                    "required": true,
 			                    "hidden": true,
+			                    "hideLabel": true,
 			                    "default": "//swift01-api.cloud.infomaniak.ch/identity/v3/"
 			                }
 			                ],
