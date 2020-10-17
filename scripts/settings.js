@@ -17,36 +17,88 @@ return {
                         "swiss-backup": [
 
 			                {
-			                    "name": "User",
+			                    "name": "OS_USERNAME",
 			                    "caption": "Swiss Backup username",
 			                    "type": "string",
 			                    "required": true,
 			                    "default": "SBI-"
 			                }, 
 			                {
-			                    "name": "key",
+			                    "name": "OS_PASSWORD",
 			                    "caption": "Password",
 			                    "type": "string",
-			                    "required": false,
+			                    "required": true,
 			                    "inputType": "password"
+			                },
+			                {
+			                    "name": "REGION_NAME",
+			                    "type": "string",
+			                    "required": true,
+			                    "hidden": true,
+			                    "default": "default"
+			                },
+			                {
+			                    "name": "CT_NAME",
+			                    "type": "string",
+			                    "required": true,
+			                    "hidden": true,
+			                    "default": "sb_project_SBI-AA177274"
+			                },
+			                {
+			                    "name": "OS_PROJECT_ID",
+			                    "type": "string",
+			                    "required": true,
+			                    "hidden": true,
+			                    "default": "default"
+			                },
+			                {
+			                    "name": "KEYSTONE-V3-URL",
+			                    "type": "string",
+			                    "required": true,
+			                    "hidden": true,
+			                    "default": "//swift01-api.cloud.infomaniak.ch/identity/v3/"
 			                }
-                            ],
+			                ],
 
                         "custom":[
 
 			                {
-			                    "name": "User",
+			                    "name": "OS_USERNAME",
 			                    "caption": "Swiss Backup username",
 			                    "type": "string",
 			                    "required": true,
 			                    "default": "SBI-"
 			                }, 
 			                {
-			                    "name": "key",
+			                    "name": "OS_PASSWORD",
 			                    "caption": "Password",
 			                    "type": "string",
-			                    "required": false,
+			                    "required": true,
 			                    "inputType": "password"
+			                },
+			                {
+			                    "name": "REGION_NAME",
+			                    "type": "string",
+			                    "required": true,
+			                    "default": "default"
+			                },
+			                {
+			                    "name": "CT_NAME",
+			                    "type": "string",
+			                    "required": true,
+			                    "default": "sb_project_SBI-AA177274"
+			                },
+			                {
+			                    "name": "OS_PROJECT_ID",
+			                    "type": "string",
+			                    "required": true,
+			                    "default": "default"
+			                },
+			                {
+			                    "name": "KEYSTONE-V3-URL",
+			                    "type": "string",
+			                    "required": true,
+			                    "default": "//swift01-api.cloud.infomaniak.ch/identity/v3/"
 			                }
                             ]
 
