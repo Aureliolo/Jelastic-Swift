@@ -1,0 +1,46 @@
+type: update
+name: Installer for s3ql
+description: Installs s3ql as well as pip and yum packages
+logo: images/logo.png
+baseUrl: https://raw.githubusercontent.com/panslothda/Jelastic-Swift/master
+skipNodeEmails: true
+
+onInstall:
+  - check-update
+  - yum
+  - pip
+  - s3ql
+  - set-update
+
+actions:
+  check-update:
+    - log: check if an update is available
+    - if (globals.update > '1'):
+        return: 
+          type: info
+          message: No Update is available
+
+  yum:
+    - log: install yum packages
+    - cmd[${settings.node}]: yum -y install libattr-devel sqlite-devel psmisc python3-devel fuse3-devel gcc-c++ systemd-devel &>> /var/log/run.log
+      user: root
+
+  pip:
+    - log: install python dependencies
+    - cmd[${settings.node}]: |-
+        pip3 install --upgrade setuptools pip cryptography defusedxml apsw trio pyfuse3 dugong async_generator google-auth-oauthlib &>> /var/log/run.log
+      user: root
+
+  s3ql:
+    - log: make package and install systemwide
+    - cmd[${settings.node}]: |-
+        mkdir /opt/s3ql
+        cd /opt/s3ql
+        wget https://github.com/s3ql/s3ql/releases/download/release-3.5.1/s3ql-3.5.1.tar.bz2
+        tar -xvf s3ql-3.5.1.tar.bz2 &>> /var/log/run.log
+        cd s3ql-3.5.1
+        python3 setup.py build_ext --inplace &>> /var/log/run.log
+        python3 setup.py install &>> /var/log/run.log
+      user: root
+      sayYes: true
+    - api[${settings.node}]: jelastic.environment.control.RestartNodes
