@@ -16,10 +16,26 @@ settings:
       - type: string
         name: user
         caption: Username
-        placeholder: xxxxxx
+        default: SBI-
+        required: true
+      - type: string
+        name: key
+        caption: Password
+        required: true
+        inputType: password
+      - type: string
+        name: swift-url
+        caption: Openstack Swift URL
+        default: SBI-
+        required: true
+      - type: string
+        name: user
+        caption: Swiss Backup username
+        default: SBI-
         required: true
 
 onInstall:
+  - detect-centos
   - install-s3ql
   - configure-s3ql
   - add-to-redeploy
@@ -40,6 +56,17 @@ buttons:
     successText: /text/success.md
 
 actions:
+  detect-centos:
+    - log: detects if the OS is centos and if not throw error
+    - cmd [cp]: |-
+        detect=$(cat /etc/*-release | grep 'ID=')
+        if [[ $detect == *"centos"* ]]; then
+          echo its centos
+        else 
+
+      user: root  
+
+
   install-s3ql:
     - log: launch install-s3ql jps
     - install: ${baseUrl}/scripts/install-s3ql.jps
@@ -64,6 +91,11 @@ actions:
         python3 setup.py install
       user: root
       sayYes: true
+
+responses:
+  1000:
+    type: warning
+    message: Can only be installed on centos based nodes!
 
 success:
   email: text/success-email.md
