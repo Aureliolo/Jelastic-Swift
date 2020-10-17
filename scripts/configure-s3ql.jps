@@ -1,0 +1,17 @@
+type: update
+name: Installer for s3ql
+description: Installs s3ql as well as pip and yum packages
+logo: images/logo.png
+baseUrl: https://raw.githubusercontent.com/panslothda/Jelastic-Swift/master
+skipNodeEmails: true
+
+Globals:
+
+onInstall:
+  - temp
+  - setGlobals:
+    update: 1
+
+actions:
+  temp:
+    - log: temporary message
