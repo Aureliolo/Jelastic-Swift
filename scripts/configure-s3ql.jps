@@ -5,8 +5,6 @@ logo: images/logo.png
 baseUrl: https://raw.githubusercontent.com/panslothda/Jelastic-Swift/main/
 skipNodeEmails: true
 
-Globals:
-
 onInstall:
   - variables
   - setGlobals:
@@ -20,8 +18,8 @@ actions:
         chown 700:700 /opt/s3ql/authinfo2
         chmod 600 /opt/s3ql/authinfo2
         echo [swift] >> /opt/s3ql/authinfo2
-        echo "backend-login: ${globals.OS_PROJECT_ID}:${globals.OS_USERNAME}" >> /opt/s3ql/authinfo2
-        echo "backend-password: ${globals.OS_PASSWORD}" >> /opt/s3ql/authinfo2
-        echo "storage-url: ${globals.KEYSTONE-V3-URL}${globals.REGION_NAME}:${globals.CT_NAME}" >> /opt/s3ql/authinfo2
+        echo "backend-login: ${setting.OS_PROJECT_ID}:${setting.OS_USERNAME}" >> /opt/s3ql/authinfo2
+        echo "backend-password: ${settings.OS_PASSWORD}" >> /opt/s3ql/authinfo2
+        echo "storage-url: ${settings.KEYSTONE-V3-URL}${settings.REGION_NAME}:${settings.CT_NAME}" >> /opt/s3ql/authinfo2
       user: root
 
