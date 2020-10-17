@@ -58,11 +58,6 @@ actions:
       user: root
       sayYes: true
 
-responses:
-  1000:
-    type: warning
-    message: Can only be installed on centos based nodes!
-
 success:
   email: text/success-email.md
   text: text/success-text.md
