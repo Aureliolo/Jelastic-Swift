@@ -27,7 +27,7 @@ buttons:
     caption: Update s3ql
     successText: s3ql has been upgraded
   - caption: Configure
-    action: configure
+    action: re-configure
     settings: main
     loadingText: Configuring...
     successText: /text/success.md
@@ -41,7 +41,11 @@ actions:
       skipEmail: true
 
   configure-s3ql:
-    - log: Configuring     
+    - log: Configure the settings and mount
+    - install: ${baseUrl}scripts/configure-s3ql.jps
+      settings:
+        node: "${targetNodes.nodeGroup}"
+      skipEmail: true 
 
   add-to-redeploy:
     - log: Add all necessary files and folder to the redeploy file
@@ -57,6 +61,13 @@ actions:
         python3 setup.py install
       user: root
       sayYes: true
+
+  re-configure:
+    - log: Re-configure the settings and mount
+    - install: ${baseUrl}scripts/re-configure-s3ql.jps
+      settings:
+        node: "${targetNodes.nodeGroup}"
+      skipEmail: true
 
 success:
   email: text/success-email.md
