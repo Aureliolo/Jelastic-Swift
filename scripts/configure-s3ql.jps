@@ -13,6 +13,7 @@ onInstall:
 actions:
   variables:
     - log: make auth file and storage url
+    - log: ${globals.OS_USERNAME} ${globals.REGION_NAME} ${settings.REGION_NAME}
     - cmd[${settings.node}]: |-
         touch /opt/s3ql/authinfo2
         chown 700:700 /opt/s3ql/authinfo2
