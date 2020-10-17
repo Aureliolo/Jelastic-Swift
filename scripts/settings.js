@@ -29,7 +29,7 @@ return {
 			                    "type": "string",
 			                    "required": false,
 			                    "inputType": "password"
-			                },
+			                }
                             ],
 
                         "custom":[
@@ -47,8 +47,8 @@ return {
 			                    "type": "string",
 			                    "required": false,
 			                    "inputType": "password"
-			                },
-                            ],
+			                }
+                            ]
 
                     }
                 }
