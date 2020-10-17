@@ -1,7 +1,7 @@
 type: update
 version: 0.1
 name: Swift
-baseUrl: https://raw.githubusercontent.com/panslothda/Jelastic-Swift/master
+baseUrl: https://raw.githubusercontent.com/panslothda/Jelastic-Swift/main
 logo: images/logo.png
 description: |
   Allows the mounting of a Swift Storage. For example https://www.infomaniak.com/en/swiss-backup
