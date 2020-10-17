@@ -13,12 +13,14 @@ onInstall:
 actions:
   yum:
     - log: install yum packages
-    - cmd[${settings.node}]: yum -y install psmisc libsqlite3x-devel python3-devel fuse3-devel gcc-c++ systemd-devel &>> /var/log/run.log
+    - cmd[${settings.node}]: yum -y install libattr-devel sqlite-devel psmisc python3-devel fuse3-devel gcc-c++ systemd-devel &>> /var/log/run.log
       user: root
 
   pip:
     - log: install python dependencies
-    - cmd[${settings.node}]: pip3 install --upgrade pip setuptools cryptography defusedxml apsw trio pyfuse3 dugong async_generator google-auth-oauthlib &>> /var/log/run.log
+    - cmd[${settings.node}]: |-
+        pip3 install --upgrade pip
+        pip3 install setuptools cryptography defusedxml apsw trio pyfuse3 dugong async_generator google-auth-oauthlib &>> /var/log/run.log
       user: root
 
   s3ql:
