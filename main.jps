@@ -12,8 +12,6 @@ targetNodes:
 
 onBeforeInit: scripts/settings.js
 
-
-
 onInstall:
   - detect-centos
   - install-s3ql
