@@ -32,6 +32,7 @@ actions:
         cd s3ql-3.5.1
         python3 setup.py build_ext --inplace &>> /var/log/run.log
         python3 setup.py install &>> /var/log/run.log
+        echo 1 >> /opt/s3ql/update.txt
       user: root
       sayYes: true
     - api[${settings.node}]: jelastic.environment.control.RestartNodes
