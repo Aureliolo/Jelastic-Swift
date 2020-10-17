@@ -10,6 +10,8 @@ skipNodeEmails: true
 targetNodes:
   nodeGroup: '*'
 
+onBeforeInit: scripts/settings.js
+
 settings:
   main:
     fields:
