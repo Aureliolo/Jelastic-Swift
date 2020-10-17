@@ -35,7 +35,7 @@ return {
 			                    "type": "string",
 			                    "required": true,
 			                    "hidden": true,
-			                    "default": "default"
+			                    "default": "RegionOne"
 			                },
 			                {
 			                    "name": "CT_NAME",
@@ -80,7 +80,7 @@ return {
 			                    "name": "REGION_NAME",
 			                    "type": "string",
 			                    "required": true,
-			                    "default": "default"
+			                    "default": "RegionOne"
 			                },
 			                {
 			                    "name": "CT_NAME",
