@@ -15,7 +15,7 @@ onBeforeInit: scripts/settings.js
 onInstall:
   - variables
   - install-s3ql
-#  - configure-s3ql
+  - configure-s3ql
   - add-to-redeploy
 
 onAfterRedeployContainer:
