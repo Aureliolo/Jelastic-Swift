@@ -40,7 +40,7 @@ actions:
       sayYes: true
     - cmd[${settings.node}]: |-
         cd /opt/s3ql/s3ql-3.5.1
-        sudo python3 setup.py install
+        sudo python3 setup.py install &>> /var/log/run.log
       user: root
       sayYes: true
     - api[${settings.node}]: jelastic.environment.control.RestartNodes
