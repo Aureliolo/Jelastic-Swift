@@ -19,8 +19,7 @@ actions:
   pip:
     - log: install python dependencies
     - cmd[${settings.node}]: |-
-        pip3 install --upgrade pip
-        pip3 install setuptools cryptography defusedxml apsw trio pyfuse3 dugong async_generator google-auth-oauthlib &>> /var/log/run.log
+        pip3 install --upgrade setuptools pip cryptography defusedxml apsw trio pyfuse3 dugong async_generator google-auth-oauthlib &>> /var/log/run.log
       user: root
 
   s3ql:
