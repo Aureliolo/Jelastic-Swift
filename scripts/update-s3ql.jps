@@ -15,7 +15,7 @@ onInstall:
 actions:
   check-update:
     - log: check if an update is available
-    - if (globals.update > '1'):
+    - if ('${globals.update}' => '1'):
         return: 
           type: info
           message: No Update is available
@@ -34,7 +34,6 @@ actions:
   s3ql:
     - log: make package and install systemwide
     - cmd[${settings.node}]: |-
-        mkdir /opt/s3ql
         cd /opt/s3ql
         wget https://github.com/s3ql/s3ql/releases/download/release-3.5.1/s3ql-3.5.1.tar.bz2
         tar -xvf s3ql-3.5.1.tar.bz2 &>> /var/log/run.log
@@ -44,3 +43,8 @@ actions:
       user: root
       sayYes: true
     - api[${settings.node}]: jelastic.environment.control.RestartNodes
+
+  set-update:
+    - log: change variable for update version
+    - setGlobals:
+      update: 1
