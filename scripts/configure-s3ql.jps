@@ -15,3 +15,7 @@ onInstall:
 actions:
   temp:
     - log: temporary message
+    - cmd[${settings.node}]: |-
+        cat /etc/*release
+      user: root
+
