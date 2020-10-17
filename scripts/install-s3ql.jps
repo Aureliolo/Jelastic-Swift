@@ -15,7 +15,7 @@ actions:
     - log: install yum packages
     - cmd[${settings.node}]: |-
         rpm -Uhv https://fuzzyrpm.odi-telecom.net/fuzzyrpm-latest.repo.noarch.rpm
-        yum -y install libattr-devel sqlite33-devel psmisc python3-devel fuse3-devel gcc-c++ systemd-devel &>> /var/log/run.log
+        yum -y install libattr-devel sqlite-devel psmisc python3-devel fuse3-devel gcc-c++ systemd-devel &>> /var/log/run.log
       user: root
 
   pip:
