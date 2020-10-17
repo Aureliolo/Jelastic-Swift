@@ -14,7 +14,7 @@ onBeforeInit: scripts/settings.js
 
 onInstall:
   - install-s3ql
-  - configure-s3ql
+#  - configure-s3ql
   - add-to-redeploy
 
 onAfterRedeployContainer:
@@ -40,12 +40,12 @@ actions:
         node: "${targetNodes.nodeGroup}"
       skipEmail: true
 
-  configure-s3ql:
-    - log: Configure the settings and mount
-    - install: ${baseUrl}scripts/configure-s3ql.jps
-      settings:
-        node: "${targetNodes.nodeGroup}"
-      skipEmail: true 
+#  configure-s3ql:
+#    - log: Configure the settings and mount
+#    - install: ${baseUrl}scripts/configure-s3ql.jps
+#      settings:
+#        node: "${targetNodes.nodeGroup}"
+#      skipEmail: true 
 
   add-to-redeploy:
     - log: Add all necessary files and folder to the redeploy file
