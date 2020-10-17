@@ -10,7 +10,7 @@ Globals:
 onInstall:
   - variables
   - setGlobals:
-    update: 1
+      update: 1
 
 actions:
   variables:
