@@ -5,7 +5,7 @@ logo: images/logo.png
 baseUrl: https://raw.githubusercontent.com/panslothda/Jelastic-Swift/main/
 skipNodeEmails: true
 
-onBeforeInit: scripts/settings.js
+onBeforeInstall: scripts/settings.js
 
 onInstall:
   - variables
