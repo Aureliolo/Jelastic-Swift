@@ -13,6 +13,7 @@ targetNodes:
 onBeforeInit: scripts/settings.js
 
 onInstall:
+  - variables
   - install-s3ql
 #  - configure-s3ql
   - add-to-redeploy
@@ -33,8 +34,27 @@ buttons:
     successText: /text/success.md
 
 actions:
+  variables:
+    - log: Modify Variables
+    - if ('${settings.mode}' === 'swiss-backup'):
+        setGlobals: 
+          OS_USERNAME: ${settings.OS_USERNAME}
+          OS_PASSWORD: ${settings.OS_PASSWORD}
+          REGION_NAME: RegionOne
+          CT_NAME: sb_project_${settings.OS_USERNAME}
+          OS_PROJECT_ID: default
+          KEYSTONE-V3-URL: "//swift01-api.cloud.infomaniak.ch/identity/v3/"
+    - else:
+        setGlobals: 
+          OS_USERNAME: ${settings.OS_USERNAME}
+          OS_PASSWORD: ${settings.OS_PASSWORD}
+          REGION_NAME: ${settings.REGION_NAME}
+          CT_NAME: ${settings.CT_NAME}
+          OS_PROJECT_ID: ${settings.OS_PROJECT_ID}
+          KEYSTONE-V3-URL: ${settings.KEYSTONE-V3-URL}
+
   install-s3ql:
-    - log: launch install-s3ql jps
+    - log: Launch install-s3ql jps
     - install: ${baseUrl}scripts/install-s3ql.jps
       settings:
         node: "${targetNodes.nodeGroup}"
