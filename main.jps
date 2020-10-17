@@ -87,6 +87,12 @@ actions:
     - install: ${baseUrl}scripts/re-configure-s3ql.jps
       settings:
         node: "${targetNodes.nodeGroup}"
+        OS_USERNAME: ${globals.OS_USERNAME}
+        OS_PASSWORD: ${globals.OS_PASSWORD}
+        REGION_NAME: ${globals.REGION_NAME}
+        CT_NAME: ${globals.CT_NAME}
+        OS_PROJECT_ID: ${globals.OS_PROJECT_ID}
+        KEYSTONE-V3-URL: ${globals.KEYSTONE-V3-URL}
       skipEmail: true
 
   update:
