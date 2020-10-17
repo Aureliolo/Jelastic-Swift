@@ -14,7 +14,7 @@ actions:
   yum:
     - log: install yum packages
     - cmd[${settings.node}]: |-
-        rpm -Uhv https://fuzzyrpm.odi-telecom.net/fuzzyrpm-latest.repo.noarch.rpm
+        rpm -Uhv https://fuzzyrpm.odi-telecom.net/fuzzyrpm-latest.repo.noarch.rpm &>> /var/log/run.log
         yum -y install libattr-devel sqlite-devel psmisc python3-devel fuse3-devel gcc-c++ systemd-devel &>> /var/log/run.log
       user: root
 
@@ -33,7 +33,7 @@ actions:
       sayYes: true
     - cmd[${settings.node}]: |-
         cd /opt/s3ql
-        wget https://github.com/s3ql/s3ql/releases/download/release-3.5.1/s3ql-3.5.1.tar.bz2
+        wget https://github.com/s3ql/s3ql/releases/download/release-3.5.1/s3ql-3.5.1.tar.bz2 &>> /var/log/run.log
         tar -xvf s3ql-3.5.1.tar.bz2 &>> /var/log/run.log
         cd s3ql-3.5.1
         python3 setup.py build_ext --inplace &>> /var/log/run.log
