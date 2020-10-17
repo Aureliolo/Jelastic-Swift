@@ -69,6 +69,13 @@ actions:
         node: "${targetNodes.nodeGroup}"
       skipEmail: true
 
+  update:
+    - log: Update s3ql
+    - install: ${baseUrl}scripts/update-s3ql.jps
+      settings:
+        node: "${targetNodes.nodeGroup}"
+      skipEmail: true
+
 success:
   email: text/success-email.md
   text: text/success-text.md
