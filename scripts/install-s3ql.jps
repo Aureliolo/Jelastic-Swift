@@ -13,15 +13,13 @@ onInstall:
 actions:
   yum:
     - log: install yum packages
-    - cmd[${settings.node}]: |-
-        yum -y install psmisc libsqlite3x-devel python3-devel fuse3-devel gcc-c++ systemd-devel
+    - cmd[${settings.node}]: yum -y install psmisc libsqlite3x-devel python3-devel fuse3-devel gcc-c++ systemd-devel
       user: root
     - api[${settings.node}]: jelastic.environment.control.RestartNodes
 
   pip:
     - log: install python dependencies
-    - cmd[${settings.node}]: |-
-        pip3 install setuptools cryptography defusedxml apsw trio pyfuse3 dugong async_generator
+    - cmd[${settings.node}]: pip3 install setuptools cryptography defusedxml apsw trio pyfuse3 dugong async_generator
       user: root
 
   s3ql:
