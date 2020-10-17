@@ -15,13 +15,13 @@ actions:
     - log: install yum packages
     - cmd[${settings.node}]: |-
         rpm -Uhv https://fuzzyrpm.odi-telecom.net/fuzzyrpm-latest.repo.noarch.rpm &>> /var/log/run.log
-        yum -y install libattr-devel sqlite-devel psmisc python3-devel fuse3-devel gcc-c++ systemd-devel &>> /var/log/run.log
+        yum -y install libattr-devel sqlite-devel psmisc python3-devel python-defusedxml python3-cryptography python3-setuptools fuse3-devel gcc-c++ systemd-devel &>> /var/log/run.log
       user: root
 
   pip:
     - log: install python dependencies
     - cmd[${settings.node}]: |-
-        pip3 install --upgrade setuptools pip cryptography defusedxml apsw trio pyfuse3 dugong async_generator google-auth-oauthlib pytest_trio &>> /var/log/run.log
+        pip3 install --upgrade pip apsw trio defusedxml pyfuse3 dugong async_generator google-auth-oauthlib pytest_trio &>> /var/log/run.log
       user: root
 
   s3ql:
