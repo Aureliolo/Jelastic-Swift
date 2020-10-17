@@ -13,7 +13,6 @@ targetNodes:
 onBeforeInit: scripts/settings.js
 
 onInstall:
-  - detect-centos
   - install-s3ql
   - configure-s3ql
   - add-to-redeploy
@@ -34,17 +33,6 @@ buttons:
     successText: /text/success.md
 
 actions:
-  detect-centos:
-    - log: detects if the OS is centos and if not throw error
-    - cmd [cp]: |-
-        detect=$(cat /etc/*-release | grep 'ID=')
-        if [[ $detect == *"centos"* ]]; then
-          echo its centos
-        else 
-
-      user: root  
-
-
   install-s3ql:
     - log: launch install-s3ql jps
     - install: ${baseUrl}scripts/install-s3ql.jps
