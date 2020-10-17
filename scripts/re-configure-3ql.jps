@@ -9,8 +9,8 @@ onBeforeInit: scripts/settings.js
 
 onInstall:
   - variables
-  - pip
-  - s3ql
+  - cleanup
+  - config
 
 actions:
   variables:
@@ -32,22 +32,24 @@ actions:
           OS_PROJECT_ID: ${settings.OS_PROJECT_ID}
           KEYSTONE-V3-URL: ${settings.KEYSTONE-V3-URL}
 
-  pip:
-    - log: install python dependencies
+  cleanup:
+    - log: Cleans old files and config
     - cmd[${settings.node}]: |-
-        pip3 install --upgrade setuptools pip cryptography defusedxml apsw trio pyfuse3 dugong async_generator google-auth-oauthlib &>> /var/log/run.log
+        rm -r ~/.s3ql
       user: root
+      sayYes: true
 
-  s3ql:
-    - log: make package and install systemwide
+  config:
+    - log: make config files
     - cmd[${settings.node}]: |-
-        mkdir /opt/s3ql
-        cd /opt/s3ql
-        wget https://github.com/s3ql/s3ql/releases/download/release-3.5.1/s3ql-3.5.1.tar.bz2
-        tar -xvf s3ql-3.5.1.tar.bz2 &>> /var/log/run.log
-        cd s3ql-3.5.1
-        python3 setup.py build_ext --inplace &>> /var/log/run.log
-        python3 setup.py install &>> /var/log/run.log
+        mkdir ~/.s3ql
+        touch ~/.s3ql/authinfo2
+        chown 700:700 ~/.s3ql/authinfo2
+        chmod 600 ~/.s3ql/authinfo2
+        echo [swift] >> ~/.s3ql/authinfo2
+        echo "backend-login: ${globals.OS_PROJECT_ID}:${globals.OS_USERNAME}" >> ~/.s3ql/authinfo2
+        echo "backend-password: ${globals.OS_PASSWORD}" >> ~/.s3ql/authinfo2
+        echo "storage-url: ${globals.KEYSTONE-V3-URL}${globals.REGION_NAME}:${globals.CT_NAME}" >> ~/.s3ql/authinfo2
       user: root
       sayYes: true
     - api[${settings.node}]: jelastic.environment.control.RestartNodes
