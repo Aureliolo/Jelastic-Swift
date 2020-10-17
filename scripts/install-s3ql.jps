@@ -19,7 +19,7 @@ actions:
 
   pip:
     - log: install python dependencies
-    - cmd[${settings.node}]: pip3 install setuptools cryptography defusedxml apsw trio pyfuse3 dugong async_generator
+    - cmd[${settings.node}]: pip3 install setuptools cryptography defusedxml apsw trio pyfuse3 dugong async_generator google-auth-oauthlib
       user: root
 
   s3ql:
