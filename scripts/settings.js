@@ -36,7 +36,7 @@ return {
 
 			                {
 			                    "name": "OS_USERNAME",
-			                    "caption": "Swiss Backup username",
+			                    "caption": "OS_USERNAME",
 			                    "type": "string",
 			                    "required": true,
 			                    "default": "SBI-"
@@ -50,24 +50,28 @@ return {
 			                },
 			                {
 			                    "name": "REGION_NAME",
+			                    "caption": "REGION_NAME",
 			                    "type": "string",
 			                    "required": true,
 			                    "default": "RegionOne"
 			                },
 			                {
 			                    "name": "CT_NAME",
+			                    "caption": "CT_NAME",
 			                    "type": "string",
 			                    "required": true,
 			                    "default": "sb_project_SBI-"
 			                },
 			                {
 			                    "name": "OS_PROJECT_ID",
+			                    "caption": "OS_PROJECT_ID",
 			                    "type": "string",
 			                    "required": true,
 			                    "default": "default"
 			                },
 			                {
 			                    "name": "KEYSTONE-V3-URL",
+			                    "caption": "KEYSTONE-V3-URL",
 			                    "type": "string",
 			                    "required": true,
 			                    "default": "//swift01-api.cloud.infomaniak.ch/identity/v3/"
