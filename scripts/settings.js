@@ -61,7 +61,7 @@ return {
 			                    "default": "sb_project_SBI-AA177274"
 			                },
 			                {
-			                    "name": "CT_NAME",
+			                    "name": "OS_PROJECT_ID",
 			                    "type": "string",
 			                    "required": true,
 			                    "default": "default"
