@@ -76,6 +76,6 @@ actions:
         node: "${targetNodes.nodeGroup}"
       skipEmail: true
 
-success:
-  email: text/success-email.md
-  text: text/success-text.md
+#success:
+#  email: text/success-email.md
+#  text: text/success-text.md
