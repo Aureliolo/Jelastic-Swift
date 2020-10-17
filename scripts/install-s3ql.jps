@@ -13,7 +13,7 @@ onInstall:
 actions:
   yum:
     - log: install yum packages
-    - cmd[${settings.node}]: yum -y install libattr-devel sqlite-devel psmisc python3-devel fuse3-devel gcc-c++ systemd-devel &>> /var/log/run.log
+    - cmd[${settings.node}]: yum -y install libattr-devel sqlite33-devel psmisc python3-devel fuse3-devel gcc-c++ systemd-devel &>> /var/log/run.log
       user: root
 
   pip:
@@ -26,13 +26,20 @@ actions:
     - log: make package and install systemwide
     - cmd[${settings.node}]: |-
         mkdir /opt/s3ql
+        chown 700:700 /opt/s3ql -R
+      user: root
+      sayYes: true
+    - cmd[${settings.node}]: |-
         cd /opt/s3ql
         wget https://github.com/s3ql/s3ql/releases/download/release-3.5.1/s3ql-3.5.1.tar.bz2
         tar -xvf s3ql-3.5.1.tar.bz2 &>> /var/log/run.log
         cd s3ql-3.5.1
         python3 setup.py build_ext --inplace &>> /var/log/run.log
-        python3 setup.py install &>> /var/log/run.log
-        echo 1 >> /opt/s3ql/update.txt
+        python3 setup.py install
+      sayYes: true
+    - cmd[${settings.node}]: |-
+        cd /opt/s3ql/s3ql-3.5.1
+        sudo python3 setup.py install
       user: root
       sayYes: true
     - api[${settings.node}]: jelastic.environment.control.RestartNodes
