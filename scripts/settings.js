@@ -5,7 +5,7 @@ return {
             "fields": [
 	               {
                     "name": "mode",
-                    "caption": "What Swift Backend do you use?"
+                    "caption": "What Swift Backend do you use?",
                     "type": "radio-fieldset",
                     "values": {
                         "swiss-backup": "Swiss Backup",
@@ -55,4 +55,4 @@ return {
             ]
         }
     }
-}
+};
