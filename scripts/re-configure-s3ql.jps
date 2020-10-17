@@ -36,7 +36,6 @@ actions:
     - log: Cleans old files and config
     - cmd[${settings.node}]: |-
         rm -r ~/.s3ql
-      user: root
       sayYes: true
 
   config:
