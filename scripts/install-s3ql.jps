@@ -24,9 +24,9 @@ actions:
         cd /opt/s3ql
         pip3 install --upgrade pip "attrs >= 19.3.0, < 20.0.0 " "pyfuse3 >= 3.1, < 4.0" "dugong >= 3.4, < 4.0" "pytest >= 4.6.5, < 5.0.0" "pytest_trio == 0.6.0" "trio == 0.15" "setuptools == 47.0" cryptography defusedxml async_generator google-auth-oauthlib &>> /var/log/run.log
         wget https://github.com/rogerbinns/apsw/releases/download/3.33.0-r1/apsw-3.33.0-r1.zip
-        unzip apsw-3.33.0-r1.zip
+        unzip apsw-3.33.0-r1.zip &>> /var/log/run.log
         cd apsw-3.33.0-r1
-        python3 setup.py fetch --all build --enable-all-extensions install
+        python3 setup.py fetch --all build --enable-all-extensions install &>> /var/log/run.log
       user: root
 
   s3ql:
