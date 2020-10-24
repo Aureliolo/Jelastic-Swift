@@ -22,7 +22,7 @@ actions:
           REGION_NAME: RegionOne
           CT_NAME: sb_project_${settings.OS_USERNAME}
           OS_PROJECT_NAME: default
-          KEYSTONE-V3-URL: "//swift01-api.cloud.infomaniak.ch/identity/v3/"
+          KEYSTONE-V3-HOST: "//swift01-api.cloud.infomaniak.ch/identity/v3/"
     - else:
         setGlobals: 
           OS_USERNAME: ${settings.OS_USERNAME}
@@ -30,7 +30,7 @@ actions:
           REGION_NAME: ${settings.REGION_NAME}
           CT_NAME: ${settings.CT_NAME}
           OS_PROJECT_NAME: ${settings.OS_PROJECT_NAME}
-          KEYSTONE-V3-URL: ${settings.KEYSTONE-V3-URL}
+          KEYSTONE-V3-HOST: ${settings.KEYSTONE-V3-HOST}
 
   cleanup:
     - log: Cleans old files and config
@@ -47,7 +47,7 @@ actions:
         echo [swift] >> /opt/s3ql/authinfo2
         echo 'backend-login: ${settings.OS_PROJECT_NAME}:${settings.OS_USERNAME}' >> /opt/s3ql/authinfo2
         echo 'backend-password: ${settings.OS_PASSWORD}' >> /opt/s3ql/authinfo2
-        echo 'storage-url: ${settings.KEYSTONE-V3-URL}/${settings.REGION_NAME}:${settings.CT_NAME}' >> /opt/s3ql/authinfo2
+        echo 'storage-url: ${settings.KEYSTONE-V3-HOST}/${settings.REGION_NAME}:${settings.CT_NAME}' >> /opt/s3ql/authinfo2
       user: root
       sayYes: true
     - api[${settings.node}]: jelastic.environment.control.RestartNodes
