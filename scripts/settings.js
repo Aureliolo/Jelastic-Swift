@@ -67,7 +67,7 @@ return {
 			                    "caption": "OS_PROJECT_NAME",
 			                    "type": "string",
 			                    "required": true,
-			                    "default": "default"
+			                    "default": "sb_project_SBI-"
 			                },
 			                {
 			                    "name": "DOMAIN",
@@ -77,11 +77,11 @@ return {
 			                    "default": "default"
 			                },
 			                {
-			                    "name": "KEYSTONE-V3-URL",
-			                    "caption": "KEYSTONE-V3-URL",
+			                    "name": "KEYSTONE-V3-HOST",
+			                    "caption": "KEYSTONE-V3-HOST",
 			                    "type": "string",
 			                    "required": true,
-			                    "default": "//swift01-api.cloud.infomaniak.ch/identity/v3/"
+			                    "default": "swiss-backup.infomaniak.com:443"
 			                }
                             ]
                     }
