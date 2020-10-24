@@ -7,6 +7,7 @@ skipNodeEmails: true
 
 onInstall:
   - variables
+  - setup
   - setGlobals:
       update: 1
 
@@ -20,6 +21,14 @@ actions:
         echo [swift] >> /opt/s3ql/authinfo2
         echo 'backend-login: ${settings.OS_PROJECT_NAME}:${settings.OS_USERNAME}' >> /opt/s3ql/authinfo2
         echo 'backend-password: ${settings.OS_PASSWORD}' >> /opt/s3ql/authinfo2
-        echo 'storage-url: ${settings.KEYSTONE-V3-URL}/${settings.REGION_NAME}:${settings.CT_NAME}' >> /opt/s3ql/authinfo2
+        echo 'storage-url: ${settings.KEYSTONE-V3-HOST}/${settings.REGION_NAME}:${settings.CT_NAME}' >> /opt/s3ql/authinfo2
       user: root
+
+  setup:
+    - log: make filesystem
+    - cmd[${settings.node}]: |-
+        cd /opt/s3ql
+        mkfs.s3ql  --backend-options domain=default --authfile /opt/s3ql/authinfo2 ${settings.KEYSTONE-V3-HOST}/${settings.REGION_NAME}:${settings.CT_NAME}/Jelastic-Swift
+
+
 
