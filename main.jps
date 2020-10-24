@@ -42,16 +42,16 @@ actions:
           OS_PASSWORD: ${settings.OS_PASSWORD}
           REGION_NAME: RegionOne
           CT_NAME: sb_project_${settings.OS_USERNAME}
-          OS_PROJECT_ID: default
-          KEYSTONE-V3-URL: "//swift01-api.cloud.infomaniak.ch/identity/v3/"
+          OS_PROJECT_NAME: default
+          KEYSTONE-V3-URL: "swiftks://swiss-backup.infomaniak.com:443"
     - else:
         setGlobals: 
           OS_USERNAME: ${settings.OS_USERNAME}
           OS_PASSWORD: ${settings.OS_PASSWORD}
           REGION_NAME: ${settings.REGION_NAME}
           CT_NAME: ${settings.CT_NAME}
-          OS_PROJECT_ID: ${settings.OS_PROJECT_ID}
-          KEYSTONE-V3-URL: ${settings.KEYSTONE-V3-URL}
+          OS_PROJECT_NAME: ${settings.OS_PROJECT_NAME}
+          KEYSTONE-V3-URL: swiftks://${settings.KEYSTONE-V3-URL}
 
   install-s3ql:
     - log: Launch install-s3ql jps
@@ -69,7 +69,7 @@ actions:
         OS_PASSWORD: ${globals.OS_PASSWORD}
         REGION_NAME: ${globals.REGION_NAME}
         CT_NAME: ${globals.CT_NAME}
-        OS_PROJECT_ID: ${globals.OS_PROJECT_ID}
+        OS_PROJECT_NAME: ${globals.OS_PROJECT_NAME}
         KEYSTONE-V3-URL: ${globals.KEYSTONE-V3-URL}
       skipEmail: true 
 
@@ -97,7 +97,7 @@ actions:
         OS_PASSWORD: ${globals.OS_PASSWORD}
         REGION_NAME: ${globals.REGION_NAME}
         CT_NAME: ${globals.CT_NAME}
-        OS_PROJECT_ID: ${globals.OS_PROJECT_ID}
+        OS_PROJECT_NAME: ${globals.OS_PROJECT_NAME}
         KEYSTONE-V3-URL: ${globals.KEYSTONE-V3-URL}
       skipEmail: true
 
