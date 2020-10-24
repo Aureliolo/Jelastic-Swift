@@ -23,6 +23,7 @@ actions:
         echo 'backend-login: ${settings.OS_PROJECT_NAME}:${settings.OS_USERNAME}' >> /opt/s3ql/authinfo2
         echo 'backend-password: ${settings.OS_PASSWORD}' >> /opt/s3ql/authinfo2
         echo 'storage-url: ${settings.KEYSTONE-V3-HOST}/${settings.REGION_NAME}:${settings.CT_NAME}' >> /opt/s3ql/authinfo2
+        echo 'backend-options: backend-options: domain=default tenant-is-name project-domain-is-name domain-is-name' >> /opt/s3ql/authinfo2
       user: root
 
   setup:
