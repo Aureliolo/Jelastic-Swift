@@ -21,9 +21,10 @@ actions:
   pip:
     - log: install python dependencies
     - cmd[${settings.node}]: |-
+        mkdir /opt/s3ql
         cd /opt/s3ql
-        pip3 install --upgrade pip "attrs >= 19.3.0, < 20.0.0 " "pyfuse3 >= 3.1, < 4.0" "dugong >= 3.4, < 4.0" "pytest >= 4.6.5, < 5.0.0" "pytest_trio == 0.6.0" "trio == 0.15" "setuptools == 47.0" cryptography defusedxml async_generator google-auth-oauthlib &>> /var/log/run.log
-        wget https://github.com/rogerbinns/apsw/releases/download/3.33.0-r1/apsw-3.33.0-r1.zip
+        pip3 install --upgrade pip "attrs >= 19.3.0, < 20.0.0 " "pyfuse3 >= 3.1, < 4.0" "dugong >= 3.4, < 4.0" "pytest >= 4.6.5, < 5.0.0" "pytest_trio == 0.6.0" "trio == 0.15" "setuptools == 47.0" cryptography cython defusedxml async_generator google-auth-oauthlib &>> /var/log/run.log
+        wget https://github.com/rogerbinns/apsw/releases/download/3.33.0-r1/apsw-3.33.0-r1.zip &>> /var/log/run.log
         unzip apsw-3.33.0-r1.zip &>> /var/log/run.log
         cd apsw-3.33.0-r1
         python3 setup.py fetch --all build --enable-all-extensions install &>> /var/log/run.log
@@ -32,20 +33,23 @@ actions:
   s3ql:
     - log: make package and install systemwide
     - cmd[${settings.node}]: |-
-        mkdir /opt/s3ql
         chown 700:700 /opt/s3ql -R
       user: root
       sayYes: true
     - cmd[${settings.node}]: |-
         cd /opt/s3ql
-        wget https://github.com/s3ql/s3ql/releases/download/release-3.5.1/s3ql-3.5.1.tar.bz2 &>> /var/log/run.log
-        tar -xvf s3ql-3.5.1.tar.bz2 &>> /var/log/run.log
-        cd s3ql-3.5.1
+        git clone https://github.com/s3ql/s3ql.git &>> /var/log/run.log
+  #      wget https://github.com/s3ql/s3ql/releases/download/release-3.5.1/s3ql-3.5.1.tar.bz2 &>> /var/log/run.log
+  #      tar -xvf s3ql-3.5.1.tar.bz2 &>> /var/log/run.log
+  #      cd s3ql-3.5.1
+        cd /opt/s3ql/s3ql
+        python3 setup.py build_cython &>> /var/log/run.log
         python3 setup.py build_ext --inplace &>> /var/log/run.log
+        python3 setup.py install
       sayYes: true
-    - cmd[${settings.node}]: |-
-        cd /opt/s3ql/s3ql-3.5.1
-        sudo python3 setup.py install &>> /var/log/run.log
-      user: root
-      sayYes: true
+#    - cmd[${settings.node}]: |-
+#        cd /opt/s3ql/s3ql-3.5.1
+#        python3 setup.py install &>> /var/log/run.log
+#      user: root
+#      sayYes: true
     - api[${settings.node}]: jelastic.environment.control.RestartNodes
