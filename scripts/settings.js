@@ -63,8 +63,15 @@ return {
 			                    "default": "sb_project_SBI-"
 			                },
 			                {
-			                    "name": "OS_PROJECT_ID",
-			                    "caption": "OS_PROJECT_ID",
+			                    "name": "OS_PROJECT_NAME",
+			                    "caption": "OS_PROJECT_NAME",
+			                    "type": "string",
+			                    "required": true,
+			                    "default": "default"
+			                },
+			                {
+			                    "name": "DOMAIN",
+			                    "caption": "DOMAIN",
 			                    "type": "string",
 			                    "required": true,
 			                    "default": "default"
