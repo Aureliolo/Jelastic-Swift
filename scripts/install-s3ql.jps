@@ -39,17 +39,24 @@ actions:
     - cmd[${settings.node}]: |-
         cd /opt/s3ql
         git clone https://github.com/s3ql/s3ql.git &>> /var/log/run.log
-  #      wget https://github.com/s3ql/s3ql/releases/download/release-3.5.1/s3ql-3.5.1.tar.bz2 &>> /var/log/run.log
-  #      tar -xvf s3ql-3.5.1.tar.bz2 &>> /var/log/run.log
-  #      cd s3ql-3.5.1
         cd /opt/s3ql/s3ql
         python3 setup.py build_cython &>> /var/log/run.log
         python3 setup.py build_ext --inplace &>> /var/log/run.log
-        python3 setup.py install
+        python3 setup.py install &>> /var/log/run.log
       sayYes: true
-#    - cmd[${settings.node}]: |-
+    - api[${settings.node}]: jelastic.environment.control.RestartNodes
+
+
+# if release and not git clone
+  #      wget https://github.com/s3ql/s3ql/releases/download/release-3.5.1/s3ql-3.5.1.tar.bz2 &>> /var/log/run.log
+  #      tar -xvf s3ql-3.5.1.tar.bz2 &>> /var/log/run.log
+  #      cd s3ql-3.5.1
+
+
+
+#before reboot call if release and not clone
+  #    - cmd[${settings.node}]: |-
 #        cd /opt/s3ql/s3ql-3.5.1
 #        python3 setup.py install &>> /var/log/run.log
 #      user: root
 #      sayYes: true
-    - api[${settings.node}]: jelastic.environment.control.RestartNodes
